@@ -1,7 +1,7 @@
 const fs = require("fs"); 
 const path = require ("path");
 
-exports = {
+module.exports = {
 
     config: {
         view_path: '/view',
