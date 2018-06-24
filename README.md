@@ -1,6 +1,9 @@
 # bz-mailer
 
-##Usage Example
+## Install
+`npm install bz-mailer -S`
+
+## Usage Example
 
 ```javascript
 const mailer = require("bz-mailer");
