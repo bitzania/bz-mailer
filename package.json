@@ -1,0 +1,27 @@
+{
+  "name": "bz-mailer",
+  "version": "1.0.0",
+  "description": "mailer module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitzania/bz-mailer.git"
+  },
+  "keywords": [
+    "mailer",
+    "mailgun",
+    "nodejs"
+  ],
+  "author": "xoriuz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bitzania/bz-mailer/issues"
+  },
+  "homepage": "https://github.com/bitzania/bz-mailer#readme",
+  "dependencies": {
+    "mailgun-js": "0.18.1"
+  }
+}
