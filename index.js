@@ -39,7 +39,7 @@ module.exports = {
                 else {
                     var html = data;
                     for (var key in viewdata) {
-                        html = html.replace(/{{\S*}}/g, (match)=> {
+                        html = html.replace(new RegExp('{{'+key+'}}', 'g'), (match)=> {
                             if (viewdata[key])
                                 return viewdata[key]
                             else return '';
