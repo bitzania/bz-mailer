@@ -53,7 +53,7 @@ module.exports = {
     },
 
     send: async function(from, to, subject, viewname, viewdata) {
-        return new Promise((resolve, reject)=> {
+        return new Promise(async (resolve, reject)=> {
 
             var data= {
                 from: from,
@@ -63,7 +63,9 @@ module.exports = {
                 html: ''
             }
 
-            data.html = this.renderHTML(viewname, viewdata);
+            data.html = await this.renderHTML(viewname, viewdata);
+
+            console.log(data);
 
             this.mailgun.messages().send(data, async (error, body) => {
                 if (error) reject (error);
