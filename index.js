@@ -52,7 +52,7 @@ module.exports = {
         });
     },
 
-    send: async function(from, to, subject, viewname, viewdata) {
+    send: async function(from, to, subject, viewname, viewdata, attachment=null) {
         return new Promise(async (resolve, reject)=> {
 
             var data= {
@@ -60,8 +60,10 @@ module.exports = {
                 to: to,
                 subject: subject,
                 text: '',
-                html: ''
+                html: '',
             }
+
+            if (attachment) data.attachment = attachment;
 
             data.html = await this.renderHTML(viewname, viewdata);
 

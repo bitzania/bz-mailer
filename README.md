@@ -14,7 +14,7 @@ mailer.init({}, {
 });
 
 //send message
-mailer.send('no-reply@domain.com', 'recipient@gmail.com', 'test', 'test', {title: "test email", name:"Ficky"})
+mailer.send('no-reply@domain.com', 'fickyirwanto@gmail.com', 'test', 'test', {title: "test email", name:"Ficky"})
 .then((body)=> {
     // show email generated
 })
