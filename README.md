@@ -11,6 +11,10 @@ mailer.init({}, {
         api_key: 'YOUR MAILGUN API KEY',
         domain: 'MAILGUN DOMAIN',
     },
+    sendgrid: {
+        api_key: 'YOUR SENDGRID API KEY'
+    },
+    method: "sendgrid", // "sendgrid", "mailgun"
 });
 
 //send message
