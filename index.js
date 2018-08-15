@@ -9,6 +9,10 @@ module.exports = {
             api_key: '',
             domain: '',
         },
+        sendgrid: {
+            api_key: ''
+        },
+        method: "sendgrid", // "sendgrid", "mailgun"
         auto_bcc: false, // or csv
     },
 
@@ -21,7 +25,13 @@ module.exports = {
         if (config)
             this.config = Object.assign(this.config, config);
 
-        this.mailgun = require('mailgun-js')({apiKey: this.config.mailgun.api_key, domain: this.config.mailgun.domain});
+        if (this.config.method == "sendgrid") {
+            this.sendgrid = require('@sendgrid/mail');
+            this.sendgrid.setApiKey(this.config.sendgrid.api_key);
+        }
+        else {
+            this.mailgun = require('mailgun-js')({apiKey: this.config.mailgun.api_key, domain: this.config.mailgun.domain});
+        }
     },
 
     setBCC: function(bcc) {
@@ -69,15 +79,21 @@ module.exports = {
 
             console.log(data);
 
-            this.mailgun.messages().send(data, async (error, body) => {
-                if (error) reject (error);
-                else resolve(body);
-            })
+            if (this.mailgun) {
+                this.mailgun.messages().send(data, async (error, body) => {
+                    if (error) reject (error);
+                    else resolve(body);
+                })    
+            }
+            else if (this.sendgrid) {
+                this.sendgrid.send(data)
+                .then((data)=> {resolve(data)})
+                .catch((err)=> {reject(err)})
+            }
+
         })
         
     }
-
-
 
 
 }
