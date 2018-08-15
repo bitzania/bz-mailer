@@ -23,6 +23,7 @@
   "homepage": "https://github.com/bitzania/bz-mailer#readme",
   "dependencies": {
     "@sendgrid/mail": "6.3.1",
-    "mailgun-js": "0.18.1"
+    "mailgun-js": "0.18.1",
+    "striptags": "^3.1.1"
   }
 }

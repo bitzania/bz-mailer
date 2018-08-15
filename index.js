@@ -1,5 +1,6 @@
 const fs = require("fs"); 
 const path = require ("path");
+const striptags = require('striptags');
 
 module.exports = {
 
@@ -14,6 +15,7 @@ module.exports = {
         },
         method: "sendgrid", // "sendgrid", "mailgun"
         auto_bcc: false, // or csv
+        default_from: "noreply@domain.com"
     },
 
     app: null,
@@ -62,7 +64,12 @@ module.exports = {
         });
     },
 
+    sendFrom: async function(to, subject, viewname, viewdata, attachment = null) {
+        return this.send(this.config.default_from, to, subject, viewname, viewdata, attachment);
+    },
+
     send: async function(from, to, subject, viewname, viewdata, attachment=null) {
+        if (!from) from = this.config.default_from;
         return new Promise(async (resolve, reject)=> {
 
             var data= {
@@ -76,6 +83,8 @@ module.exports = {
             if (attachment) data.attachment = attachment;
 
             data.html = await this.renderHTML(viewname, viewdata);
+            data.text = striptags(data.html);
+
 
             console.log(data);
 
