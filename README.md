@@ -17,10 +17,12 @@ mailer.init({}, {
     sendgrid: {
         api_key: 'YOUR SENDGRID API KEY'
     },
-    method: "sendgrid", // "sendgrid", "mailgun"
+    method: "sendgrid", // "sendgrid", "mailgun",
+    default_from: "noreply@domain.com" // default from address
 });
 
 //send message
+// set from address to null to use default address
 mailer.send('no-reply@domain.com', 'fickyirwanto@gmail.com', 'test', 'test', {title: "test email", name:"Ficky"})
 .then((body)=> {
     // show email generated
@@ -28,5 +30,10 @@ mailer.send('no-reply@domain.com', 'fickyirwanto@gmail.com', 'test', 'test', {ti
 .catch((err)=> {
     // show error
 })
+
+
+
+// you can also use mailer.sendFrom to automatically use default from address
+mailer.sendFrom('fickyirwanto@gmail.com', 'test', 'test', {title: "test email", name:"Ficky"})
 
 ```
